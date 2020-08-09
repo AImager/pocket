@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> <html xmlns=http://www.w3.org/1999/xhtml xml:lang=en lang=en style><!--
+ Page saved with SingleFile 
+ url: http://guysblogspot.blogspot.com/2008/09/cap-solution-proving-brewer-wrong.html 
+ saved date: Sun Aug 09 2020 18:17:43 GMT+0800 (China Standard Time) 
+ info: cap
+--><meta charset=utf-8>
+<title>Guy's Blog: A CAP Solution (Proving Brewer Wrong)</title>
+<meta name=generator content=Blogger>
+<link rel=alternate type=application/atom+xml title="Guy's Blog - Atom" href=http://guysblogspot.blogspot.com/feeds/posts/default>
+<link rel=alternate type=application/rss+xml title="Guy's Blog - RSS" href="http://guysblogspot.blogspot.com/feeds/posts/default?alt=rss">
+<link rel=service.post type=application/atom+xml title="Guy's Blog - Atom" href=https://www.blogger.com/feeds/7035234/posts/default>
+<link rel=alternate type=application/atom+xml title="Guy's Blog - Atom" href=http://guysblogspot.blogspot.com/feeds/4456356795461459679/comments/default>
+<style>:root{--sf-img-3:url("data:image/gif;base64,R0lGODlhEAAQANUAAAAAAP///8S3osO2ocO1oMK0n8G0nsCznb6wmbqslLmrk7ipkbeokLWmjrSki7OjirGhiPTy7fDt5vLv6fHu6L+ym76xmtjPv9vTxOvm3e/r5K6cf66ehL6tkbCgh6+fhrKiibSljLanj7mqkr2vmLyul7utlszArc3CsNTKudPJuN7WyZuIbKKQdaGPdKORdqaUeaWTeKeVeqmYfqiXfaeWfKqZf66dg62cgsa0mce6psW4pPf18vf08fr49v///yH5BAEAAD8ALAAAAAAQABAAAAa6wN9PQCQUDIcKglRKCH874gBZWjBGiewIKiUYFjhYzOZQKKxEgVFwkWhQslloxGBIj6uAPoBqgawNAgNeBhF7ARouEAwiIYNHB4Z7EjIPIg0ORgYGFXl7KR8NDSGZmwcIBhgTFCoQHA6wD5AIDBw1HTkbLC00NyAPmxUKOhcZPj4ZKgwsLxwgSBYYh4cnLjgQBxYIPNN7PTgfHkoITQp0DKMODyAQHj/kJgkjVo3q7O5C8WeMmOrtQkEAADs=");--sf-img-4:url("data:image/gif;base64,R0lGODlhEAAQALMAAAAAAP////727v6+jv7avv9mAP5yEv6eXv6qbv7Orv5mAv6CMv6ygv7+/v///wAAACH5BAEAAA4ALAAAAAAQABAAAARB0LlCq6Vy3o25v4PQjInhDWPaEJ7YHIe7cCOiKMfIzJfqN5ufKtiw3RSI0cYFg40EG5RwwAmpBNSPVqPFSLoFSQQAOw==")}.item-control a,.item-action a{text-decoration:none!important}.icon-action{border-style:none!important;margin:0 0 -5px 0.5em!important}body{background:#135;padding:40px 20px;font:x-small "Trebuchet MS",Trebuchet,Verdana,Sans-Serif;text-align:center;color:#ccc;font-size:small}a:link{color:#9bd;text-decoration:none}a:visited{color:#a7a;text-decoration:none}a:hover{color:#ad9;text-decoration:underline}a img{border-width:0}#header{width:660px;margin:0 auto 10px;border:1px solid #468}#blog-title{margin:5px 5px 0;padding:20px 20px .25em;border:1px solid #357;border-width:1px 1px 0;font-size:200%;line-height:1.2em;color:#eee;text-transform:uppercase;letter-spacing:.2em}#blog-title a{color:#eee;text-decoration:none}#blog-title a:hover{color:#ad9}#description{margin:0 5px 5px;padding:0 20px 20px;border:1px solid #357;border-width:0 1px 1px;font:78%/1.4em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;text-transform:uppercase;letter-spacing:.2em;color:#79b}#content{width:660px;margin:0 auto;padding:0;text-align:left}#main{width:410px;float:left}#sidebar{width:220px;float:right}h2{margin:1.5em 0 .75em;font:bold 78%/1.4em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;text-transform:uppercase;letter-spacing:.2em}.date-header{margin:1.5em 0 .5em;color:#579}.post{margin:.5em 0 1.5em;border-bottom:1px dotted #357;padding-bottom:1.5em}.post-title{margin:.25em 0 0;padding:0 0 4px;font-size:140%;line-height:1.4em;color:#fc6}.post div{margin:0 0 .75em;line-height:1.6em}p.post-footer{margin:-.25em 0 0;color:#357}.post-footer em,.comment-link{font:78%/1.4em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;text-transform:uppercase;letter-spacing:.1em}.post-footer em{font-style:normal;color:#579;margin-right:.6em}.comment-link{margin-left:.6em}.post img{padding:4px;border:1px solid #222}#comments h4{margin:1em 0;font:bold 78%/1.6em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;text-transform:uppercase;letter-spacing:.2em;color:#579}#comments-block{margin:1em 0 1.5em;line-height:1.6em}#comments-block dt{margin:.5em 0}#comments-block dd{margin:.25em 0 0}#comments-block dd.comment-timestamp{margin:-.25em 0 2em;font:78%/1.4em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;text-transform:uppercase;letter-spacing:.1em}#comments-block dd p{margin:0 0 .75em}.sidebar-title{color:#579}#sidebar ul{margin:0 0 1.5em;padding:0 0 1.5em;border-bottom:1px dotted #357;list-style:none}#sidebar li{margin:0;padding:0 0 .25em 15px;text-indent:-15px;line-height:1.5em}#sidebar p{line-height:1.5em}#footer{width:660px;clear:both;margin:0 auto}#footer p{margin:0;padding-top:15px;font:78%/1.6em "Trebuchet MS",Trebuchet,Verdana,Sans-serif;text-transform:uppercase;letter-spacing:.1em}html body{margin:0;padding-top:0;padding-left:0;padding-right:0}body #header{margin-top:50px}#navbar-iframe{position:absolute;top:0;left:0;z-index:500;height:30px}</style>
+<link rel=icon type=image/vnd.microsoft.icon href="data:image/x-icon;base64,AAABAAIAICAAAAEACACoCAAAJgAAABAQAAABAAgAaAUAAM4IAAAoAAAAIAAAAEAAAAABAAgAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAmb+AIKy/gDO4v4AWp7+AL7a/gDu9v4OInr+Dp7G/gAScv4Ajr7+AN7u/gByqv4A/v7+AAAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAgwMDAwMDAwMAgcAAAAAAAAAAAAAAAAAAAAAAAAJDAwMDAwMDAwMDAwMDAwJAAAAAAAAAAAAAAAAAAAACQwMDAwMDAwMDAwMDAwMDAwJAAAAAAAAAAAAAAAAAAEMDAwMDAwMDAwMDAwMDAwMDAwAAAAAAAAAAAAAAAAABwwMDAwMDAwMDAwMDAwMDAwMDAcAAAAAAAAAAAAAAAACDAwMDAwDAwMDAwMDAwwMDAwMAgAAAAAAAAAAAAAAAAwMDAwMAAAAAAAAAAAAAAwMDAwMAAAAAAAAAAAAAAAADAwMDAwMAwMDAwMDAwMMDAwMDAwAAAAAAAAAAAAAAAAMDAwMDAwMDAwMDAwMDAwMDAwMDAAAAAAAAAAAAAAAAAwMDAwMDAwMDAwMDAwMDAwMDAwMAAAAAAAAAAAAAAAADAwMDAwMDAwMDAwMDAwMDAwMDAwAAAAAAAAAAAAAAAAMDAwMDAwMDAwMDAwMDAwMDAwMCgAAAAAAAAAAAAAAAAwMDAwMDAMDAwMMDAwMDAwFAQEAAAAAAAAAAAAAAAAADAwMDAwAAAAAAAAMDAwMDAEAAAAAAAAAAAAAAAAAAAACDAwMDAwDAwMDDAwMDAwMAQAAAAAAAAAAAAAAAAAAAAcMDAwMDAwMDAwMDAwMDAwIAAAAAAAAAAAAAAAAAAAAAQwMDAwMDAwMDAwMDAwMBwAAAAAAAAAAAAAAAAAAAAAACQwMDAwMDAwMDAwMDAUGAAAAAAAAAAAAAAAAAAAAAAAACQwMDAwMDAwMDAwKAQAAAAAAAAAAAAAAAAAAAAAAAAAAAQcCDAwMDAUECwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///AAAADgAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAABwAAAAygAAAAQAAAAIAAAAAEACAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAACZv4CgrL+gu72/s5env5ars7+vjKC/u4Scv4ijr7+nv7+/hJuqv6Ovtr+3gAAAHIAAAD+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAAAAAAAAAAAAAAD///8AAAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAcCCAgICAIHAAAAAAAAAAcICAgICAgICAcAAAAAAAACCAgDAwMDCAgCAAAAAAAACAgJAAAAAAkICAAAAAAAAAgICAgICAgICAgAAAAAAAAICAgICAgICAgIAAAAAAAACAgJAAADCAgBBQAAAAAAAAIICAMDAggIBQAAAAAAAAAHCAgICAgICgAAAAAAAAAAAAcCCAgIBAYAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AAAAAAAAAAAAAAAAAAD///8AAAAAAAAAAAAAAAD//8ADQSCAAcADAACAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAMADgAE="><style>.sf-hidden{display:none!important}</style><link rel=canonical href=http://guysblogspot.blogspot.com/2008/09/cap-solution-proving-brewer-wrong.html></head>
+<body>
+<div id=navbar-iframe-container><iframe ng-non-bindable frameborder=0 hspace=0 marginheight=0 marginwidth=0 scrolling=no tabindex=0 vspace=0 width=100% id=navbar-iframe name=navbar-iframe sandbox="allow-popups allow-top-navigation allow-top-navigation-by-user-activation" srcdoc='<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> <html dir=ltr><meta charset=utf-8><style>:root{--sf-img-1:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAUCAMAAADFhv/OAAABj1BMVEUAAADuXwDuXwDuXwDuXwDuXwBmZmZoaGhtbW1ubm5wcHBycnJ0dHR4eHh6enqCgoKEhISGhoaIiIiKioqOjo6QkJCSkpKYmJiampqenp6lpaWmpqapqamqqqqrq6usrKytra2urq6vr6+zs7O0tLS1tbW2tra3t7e5ubm6urq7u7u+vr6/v7/BwcHDw8PHx8fJycnLy8vQ0NDR0dHT09PU1NTV1dXW1tbY2Njb29vc3Nzd3d3f39/g4ODh4eHi4uLj4+Pl5eXm5ubn5+fp6ent7e3uXwDu7u7vZQnvaA/vahHv7+/wcRzwch/wdCHwdCLxdybxgDTx8fHzjEfzjUnzjkvzj03zkE7zkVDzklLz8/P0lFT0mFv19fX2qnf2q3n29vb3r4D3tIj3tov3t4339/f4upH4vpj5w5/5y6z5+fn6zK36z7P607n6+vr7+/v84M784tD85dX8/Pz96t3969/97OD97OH97eP97+X98Of9/f3+8uv+9e/+9/P++PT++vf/+/j//Pr//fz////M5WKQAAAABnRSTlMADHh53+GPUDoCAAABrUlEQVQYGXXBCVcSYRQG4Jft4xhQTRblRwNSjdaUjbYpoZgtdypM23eLrGnBygyhtFKz+8O7M9mc48F5HuDzmFUslYdd+HjEyGRz/R5ELJGibVKJGBbPFExr8Ii26wDYTu8yenerfBNAnLrEMVY4VluE6+iTHjCS3ltleKY6yECSuiRhHa5BNE7oy4DRU4XgA+oKQDtA0WrBN6ongIzB8DmqApBv+v3X9bXlN3foH5QGEbioJ4FsLwLn1DhAYvoXBzZvUwDlsgvRcvQkkMt5EGyqcYDEO+b1dnuDeYECGNbOHNCqFo/eBfqVyQBfyOz5AZBYYp4lesL8kwJwbW2PVpxS4Xgd8PIq75w1s+n9TYDEKvPH+flPzPzyBQmgfkqLotb2HNA8pERGqTyDxAqH/pAA4E1N1C5dHdLaegrwVKVau9anlMEkvnNogwT+aw7pgQa2cJ/axyS+MT++Je795jUSCDXOuwjxaQ8kvjC/evTwwf3nm7xCAtFIvObQAglEI3FjmbeszpBANPLdfLvU6XTaH55dJx+i0Q4QLUldkogWpy5xRIslUrRNKhH7C/GzqH/X3eiyAAAAAElFTkSuQmCC");--sf-img-2:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAECAYAAABsgwTvAAAAL0lEQVQYV2P4jx8woOOZZ/7/x4VhiogyCJ+BIHFkRUQZhM1AmBi6IqIMQjYQmQ8AYyH5bW1RQOgAAAAASUVORK5CYII=")}body{padding:0;margin:0}#b-navbar{white-space:nowrap;color:#fff;height:29px;border-bottom:1px solid #024;background:transparent;font-size:13px;font-family:Arial,Sans-serif;position:relative}#b-navbar #b-navbar-bg{position:absolute;left:0;top:0;width:100%;height:30px;background-color:#036;opacity:1.0}#b-navbar .navbar-right{text-align:right;padding-right:5px}#b-navbar-controls{margin-left:.2em;height:29px}#b-navbar #b-navbar-logo{display:block;margin-right:8px;margin-left:8px;width:20px;height:20px;background:var(--sf-img-1) no-repeat -26px 0;cursor:pointer}#b-navbar #b-query-box{background-color:#fff;margin:0 .5em 0 0;border:1px solid #014;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;padding:0 .3em}#b-navbar #b-query-icon{display:block;width:13px;height:13px;cursor:pointer;background:var(--sf-img-1) no-repeat 0 0}#b-navbar #b-query-icon:hover{background:var(--sf-img-1) no-repeat -13px 0}#b-navbar #b-query{font-size:13px;color:#000;background-color:transparent;border:none;margin:0}#b-navbar .b-link{display:inline-block;font-size:13px;vertical-align:middle;padding:2px .4em}#b-navbar .b-link{color:#9cf;text-decoration:none;white-space:nowrap;cursor:pointer}#b-navbar .b-link:hover{color:#fff;text-decoration:underline}#b-navbar #b-more span.arrow{background:var(--sf-img-2) no-repeat -12px center;display:inline-block;width:7px;height:10px}#b-navbar #b-more:hover span.arrow{background:var(--sf-img-2) no-repeat 0 center}#b-sms a{margin-right:.5em;line-height:1em}#b-sms a:hover{text-decoration:underline}.sf-hidden{display:none!important}</style></head>
+<body class="lang_zh rb" marginwidth=0 marginheight=0>
+<div id=b-navbar><div id=b-navbar-bg style=z-index:-1></div>
+<div id=b-navbar-fg>
+<table id=b-navbar-controls cellpadding=0 cellspacing=0 border=0 width=100%><tbody><tr style=height:20px><td valign=middle width=24px><a href=https://www.blogger.com/ id=b-navbar-logo tabindex=1 title="转到 Blogger.com"></a>
+<div id=b-sms class="b-mobile sf-hidden"><a href="sms:?body=%E5%97%A8%EF%BC%8C%E8%AF%B7%E6%9F%A5%E7%9C%8B+http://guysblogspot.blogspot.com/%3Fspref%3Dsms+%E4%B8%8A%E7%9A%84+Guy%27s+Blog" tabindex=2>作为短信发送</a></div></td>
+<td valign=middle width=150px><form id=searchthis action=https://guysblogspot.blogspot.com/search style=display:inline><div id=b-query-box><table cellpadding=0 cellspacing=0><tbody><tr><td valign=middle><input type=text id=b-query name=q tabindex=3 style=width:120px title=搜索 value></td>
+<td valign=middle style=width:15px><a id=b-query-icon title=搜索此博客></a></table></div>
+</form></td>
+<td valign=middle nowrap class=gplus>
+<a id=b-more class=b-link tabindex=4>更多
+<span class=arrow></span></a></td>
+<td class=navbar-right align=right nowrap valign=middle>
+<a class=b-link href=https://www.blogger.com/home#create id=b-getorpost tabindex=8>创建博客</a>
+<a class=b-link href=https://www.blogger.com/ tabindex=9>登录</a></table></div></div>
+'></iframe></div>
+<div id=header>
+ <h1 id=blog-title>
+ <a href=http://guysblogspot.blogspot.com/>
+ Guy's Blog
+ </a>
+ </h1>
+ <p id=description>Nice to meet you! My name is Guy and this is my blog... A bit about me: I work for Atomikos, where I try to make the Internet a more reliable platform for business. This means that we make software that co-ordinates (behind the scenes) the joint outcome of different web service invocations. In other words, incomplete tasks can always be canceled.</p>
+</div>
+<div id=content>
+<div id=main><div id=main2>
+ 
+ <h2 class=date-header>Sunday, September 07, 2008</h2>
+ 
+ 
+ 
+ 
+ <div class=post><a name=4456356795461459679></a>
+ 
+ <h3 class=post-title>
+ 
+ A CAP Solution (Proving Brewer Wrong)
+ 
+ </h3>
+ 
+ <div class=post-body>
+ <div>
+ <div style=clear:both></div>One of the latest challenges in computer science seems to be the CAP theorem. It addresses a perceived impossibility of building large-scale and clustered (web) service architectures. The fact that it (supposedly) has been <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.20.1495&amp;rep=rep1&amp;type=pdf">proven to be true</a> makes what I am going to write here all the more unlikely. Still, read on because I will show that I am right and <b>CAP is not an impossibility after all</b>... While the impossibility proof of CAP is mathematically correct, it is based on assumptions that are too strict. By relaxing these assumptions, I found the solution presented here.<br><br><b>What is CAP?</b><br><br>The CAP theorem (short for consistency, availability, partition-tolerant) essentially states that you cannot have a clustered system that supports all of the following three qualities:<br><br><dl><br><dt>Consistency<dt><br><dd>Consistency is a quality meaning (informally speaking) that reads and writes happen correctly. In other words, the overall effect of executing thousands or millions of transactions concurrently is the same as if they had been executed one-at-a-time. Usually, this is done with the help of a transaction manager of some sort.<br></dd><br><dt>Availability<dt><br><dd>Availability essentially means that every operation (that makes it to a non-failing node) eventually returns a result.</dd><br><dt>Partition-tolerant<dt><br><dd><br>This quality refers to the possibility of tolerating partitions on the network. Note that we suppose a cluster architecture (which is where the network comes in).<br></dd><br></dl><br><br>CAP is a conjecture originally formulated by Eric Brewer (Inktomi) and has influenced many of today's larger-scale websites like <a href=http://highscalability.com/amazon-architecture amazon s></a>. In other words, the impact of CAP is very large. To make it worse, the perceived impossibility of a CAP system (one that has all three desirable properties) has lead people to advocate something called BASE (Basically Available, Soft-state and Eventually Consistent) - see <a href=http://www.infoq.com/presentations/availability-consistency>this talk</a> by Werner Vogels (CTO at Amazon).<br><br>As far as I know (but I could be wrong), a theoretical foundation of BASE does not exist yet (it seems more of an informal approach which to me raises serious questions concerning correctness). In this post I will present:<br><br><ul><br><li>a CAP solution</li><br><li>how this conforms to what BASE wants to achieve</li><br><li>a "design pattern" for building correct systems that (in a way) offer both CAP and BASE qualities</li><br></ul><br><br>Because CAP is perceived as impossible and because BASE lacks formal treatment, I consider this to be a signification contribution to the state of today's engineering;-)<br><br><b>What about the proof of Brewer's theorem?</b><br><br>Brewer's proof has been published by Nancy Lynch et al and discussed by me (see my <a href=http://guysblogspot.blogspot.com/2008/09/achilles-heel-of-cap-theorem.html>earlier post</a> and also <a href=http://guysblogspot.blogspot.com/2008/09/my-take-on-cap.html>this one</a>).<br><br>While the theoretical proof of the impossibility of CAP is valid, it has a big limitation: it assumes that all three CAP properties have to be supplied <b>at the same moment in time</b>. If you drop this assumption, then all of a sudden you get into a new spectrum of possibilities. This is what I will do here.<br><br><b>A CAP solution</b><br><br>Enough talk, let's get to the core of the matter. Here is my solution to CAP. To make it concrete, I will use the concept of a web-shop like Amazon. Here are the rules that are sufficient to ensure CAP:<br><br><ol><br><li>Process reads from the database if possible, or use a cached value if needed for availability (if the DB is unreachable).</li><br><li>All reads use versioning or another mechanism that allows optimistic locking.</li><br><li>Updates supplied by clients (orders in case of Amazon) are <b>queued</b> for execution, and include the versioning information of the reads that lead to the update.</li><br><li>Queued updates are processed when the number of partitions is low enough to do so. The easiest way to do this is with a cluster-wide distributed transaction across all replicas (more on scalability later), but other more refined ways are possible (such as quorum-based replication or any other smart way of replicating). The version information in the update is used to validate it: if the data in the database has been modified since the original read(s) that lead to the update, the update is rejected and a cancellation is reported back to the client. Otherwise the order is processed and a confirmation is reported back to the client.</li><br><li>The results (confirmation or cancellation) are sent asynchronously to the clients. This can be either email, message queuing, or any other asynchronous delivery method.</li><br></ol><br><br>That's it. Adhere to these guidelines, and you have a CAP architecture. I will not provide a formal proof here (I intend to do that elsewhere, in a research paper), but intuitively the proof is as follows:<br><br><ul><br><li>This system is consistent because reads are based on snapshots and incorrect updates are rejected before they are applied. In other words: there are no incorrect executions.</li><br><li>This system is available since reads always return a value, and so do writes (even though they are queued and it may take a while).</li><br><li>This system is partition-tolerant because it allows network and node failures.</li><br></ul> <br><br>Granted, this system does not provide all three <b>at the same moment in time</b> (which is how we go around the impossibility), but nevertheless the result is quite strong IMHO. <br><br><br><b>The limitations</b><br><br>There are some limitations to this solution - all of which seem reasonable:<br><ol><br><li>Read-only requests may be presented with stale information (due to updates that have yet-to-be-applied). In that sense, their results could be "inconsistent": for instance, the availability of an Amazon item can change between two page views. I do not see this as a major restriction, since no website that I know of will offer read consistency for the duration of a user session. It all depends on what you consider to be within the scope of one transaction;-) Note that this almost corresponds to snapshot isolation found in Oracle.<br></li><br><li>Partitions should not last forever: in order for this to work, partitions should be resolved within a reasonable time (reasonable being: within the expected confirmation time for updates). The duration of any partitions also affects the time window in which reads can produce stale data.</li><br><li>The updates have to be applied in the same relative order at all cluster nodes. This puts some restrictions on the algorithm used to do this.<br></li><br></ol><br><br>Note that updates are always based on correct reads thanks to the versioning check before they are applied. So update transactions are always consistent.<br><br><br><b>How does this relate to BASE?</b><br><br>You could see this as a design pattern for BASE if you like. The solution adheres to BASE in the sense that it uses cached reads (if needed) and that the updates are delayed (so you could say they are "eventually" applied and the system becomes "consistent").<br><br><b>Reflections in scalability</b><br><br>So far the CAP focus was on possibility. I think my solution shows that it is possible. Now how about scaling up? <br><br>The naive solution (a huge distributed transaction to update all cluster nodes in-sync) is unlikely to scale: as you add more nodes, more updates are needed. Now I am a big fan of transactions, but not to use them in an arbitrary matter. So how to propagate these updates through the cluster?<br><br>While smarter solutions for this exist (such as the work by <a href=http://www.cs.mcgill.ca/~kemme/disl/replication.html>Bettina Kemme</a>), a trivial first try would be to push updates (lazily) to all nodes in the cluster. This can be done with a smart queuing mechanism. The disadvantage is that updates are not applied everywhere at once (rather, the all-or-nothing quality just "ripples" through the system). So you get into the "eventually" style again.<br><br>Note that this latter suggestion makes the system behave much like the <b>READ COMMITTED</b> isolation level (which, by the way, is the default in Oracle). So this approach sacrifices consistency/isolation a bit in favor of scalability.<br><br><br><b>Future work</b><br><br>Additional research could/should be done in the following areas:<br><br><ul><br><li>Improving read consistency through session affinity</li><br><li>The best way to push the updates through the cluster</li><br><li>Performance evaluation in real life implementations</li><br></ul><br><br><b>Final note and disclaimer</b><br><br>I did not see Brewer's original presentation of the CAP theorem - so it could be that what he meant with consistency also involved all reads (see the limitations of the solution I presented here). In that case I did not find a solution for CAP but at least it is a framework and proof outline for BASE ;-)<div style=clear:both;padding-bottom:0.25em></div>
+ </div>
+ </div>
+ 
+ <p class=post-footer>
+ <em>posted by Guy at <a href=http://guysblogspot.blogspot.com/2008/09/cap-solution-proving-brewer-wrong.html title="permanent link">12:17 PM</a></em>
+ <span class=item-action><a href="https://www.blogger.com/email-post.g?blogID=7035234&amp;postID=4456356795461459679" title="Email Post"><img class=icon-action alt src="data:image/gif;base64,R0lGODlhEgANAOMAAIqKioCAgOXl5f////Ly8urq6uTk5AAAAMzMzLS0tBoaGjMzM2ZmZk1NTf///////ywAAAAAEgANAAAEWRDISSsIk+jN+QUIQAxkaRIgVoSjWaKIoa6iOxygIQNFz56Lg27X89UOisMiqZv1AAnRgdFYHoROqEAAQCqZxIJ2SxYsA03euLw9CBJozJpdhmMC+Lx+j48AADs=" height=13 width=18></a></span><span class="item-control blog-admin pid-1669368352 sf-hidden"><a style=border:none href="https://www.blogger.com/post-edit.g?blogID=7035234&amp;postID=4456356795461459679&amp;from=pencil" title="Edit Post"></a></span>
+ </p>
+ 
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ <div id=comments>
+ <a name=comments></a>
+ <h4>12 Comments:</h4>
+ <dl id=comments-block>
+ 
+ <dt class=comment-poster id=c2947874805101611069><a name=c2947874805101611069></a>
+ <span style=line-height:16px class="comment-icon anon-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Anonymous style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-3)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<span class=anon-comment-author>Anonymous</span> said...
+ </dt>
+ <dd class=comment-body>
+ <p>Hello Guy, <br><br>Thanks for your very interesting papers on transaction. The interest of the CAP theorem is to say that Consistency, Availability and partitioning cannot be reach perfectly AT THE SAME TIME. More the partitioning is important more the CAP theorem becomes accurate. I have been working for many years on distributed cache issues and when our customers want to share datacache between London, New York and Tokyo, the CAP theorem becomes fundamental. It is easy to say we can get C.A.P at the same time when all your device are at the same place and the Partitioning is weak. <br><br>Best regards<br><br>Paul Perez</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#2947874805101611069 title="comment permalink">3:10 PM</a>
+ <span class="item-control blog-admin pid-165779087 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=2947874805101611069" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c3195116660470707881><a name=c3195116660470707881></a>
+ <span style=line-height:16px class="comment-icon blogger-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Blogger style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-4)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<a href=https://www.blogger.com/profile/17883710834193340570 rel=nofollow>Guy</a> said...
+ </dt>
+ <dd class=comment-body>
+ <p>Hi Paul,<br><br>Thanks. You are right, the important notion seems to be "at the same time". It's just that that notion seems flexible if you have the option to be asynchronous (which I assume is not easily the case for distributed caches).<br><br>However, I do think it is possible to present a suite of algorithms that offer different characteristics and qualities of service. That is what I intend to do in the near future - if time allows.</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#3195116660470707881 title="comment permalink">6:10 PM</a>
+ <span class="item-control blog-admin pid-1669368352 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=3195116660470707881" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c1973620760339797816><a name=c1973620760339797816></a>
+ <span style=line-height:16px class="comment-icon anon-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Anonymous style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-3)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<span class=anon-comment-author>Anonymous</span> said...
+ </dt>
+ <dd class=comment-body>
+ <p>Hi Guy, <br>I don't like to be anonymous (anonymous said...) My name is Paul Perez, my email is paul.perez@pymma.com. <br><br>As you said The key point on CAP theorem is the "At the same time" It looks like the Heisenberg uncertainty principle, more you approach quantum size more the Heisenberg principle is accurate. With the CAP theorem, more Partitioned is your system, less you can get A&amp;P at the same time.<br><br>Best regards<br><br>PPe <br><br>I had like you pattern on TCC. I try to implement it with BPEL orchestration. Are there technical sample on that topic. thanks (on my email please)</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#1973620760339797816 title="comment permalink">1:24 PM</a>
+ <span class="item-control blog-admin pid-165779087 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=1973620760339797816" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c8822837475284009778><a name=c8822837475284009778></a>
+ <span style=line-height:16px class="comment-icon blogger-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Blogger style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-4)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<a href=https://www.blogger.com/profile/01453206324355432324 rel=nofollow>Unknown</a> said...
+ </dt>
+ <dd class=comment-body>
+ <p>Hi Guy,<br><br>I was curious, how realistic would this solution be? As I understand it, when you process an update from the queue, the version of the database changes, and hence all the other updates in the queue (who would have a different version number) are rejected, so you would have a lot of rejected updates, which would mean a lot of emails to send to customers to tell them to place their order again. Or am I misunderstanding something?<br><br>Regards</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#8822837475284009778 title="comment permalink">2:08 PM</a>
+ <span class="item-control blog-admin pid-1896645779 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=8822837475284009778" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c3981855375519073403><a name=c3981855375519073403></a>
+ <span style=line-height:16px class="comment-icon blogger-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Blogger style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-4)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<a href=https://www.blogger.com/profile/17883710834193340570 rel=nofollow>Guy</a> said...
+ </dt>
+ <dd class=comment-body>
+ <p>Hi,<br><br>Actually, what I propose is similar to optimistic locking (used in Hibernate, and in most web applications anyway): updates in the queue are indeed based on some "snapshot" of the data and are applied afterwards (when that data might have changed already). This is also how many web applications work - only there the HTTP session plays the role of the 'queue'. <br><br>This technique works pretty well except if you have 'hot spot' data - meaning data that changes extremely frequent due to high concurrency. There has been extensive research on this (just google for "optimistic locking" - it has been a while since my research days;-)<br><br>Guy</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#3981855375519073403 title="comment permalink">4:14 PM</a>
+ <span class="item-control blog-admin pid-1669368352 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=3981855375519073403" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c7423894025774687739><a name=c7423894025774687739></a>
+ <span style=line-height:16px class="comment-icon anon-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Anonymous style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-3)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<span class=anon-comment-author>Anonymous</span> said...
+ </dt>
+ <dd class=comment-body>
+ <p>Congratulations, you've re-invented Dynamo, badly. (Hint: read up on Vector Clocks, you can resolve a lot more conflicts automatically).<br><br>Your system serves stale data some of the time. Therefore, it DOES NOT HAVE the Consistency property. Period. Claiming that it does is silly.<br><br>Your system is no different from Amazon Dynamo: Sometimes, the data you serve is consistent. Sometimes, the data Dynamo serves is consistent. Both systems are 100% C+A+P compliant if you wait long enough between updates. Yawn.<br><br><br>You can't write a banking application on a "mostly"-consistent database. (It will lie about balances, and still sometimes go down when you need cash. But at least it will text me when it comes back up again!)</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#7423894025774687739 title="comment permalink">3:47 AM</a>
+ <span class="item-control blog-admin pid-165779087 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=7423894025774687739" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c6171118447178366479><a name=c6171118447178366479></a>
+ <span style=line-height:16px class="comment-icon anon-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Anonymous style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-3)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<a href=http://www.metux.de/ rel=nofollow>Enrico Weigelt, metux IT service</a> said...
+ </dt>
+ <dd class=comment-body>
+ <p>Hi folks,<br><br>IMHO the old wisdom of divide et impera is a major key here.<br><br>In 99% cases you don't need perfect consistency of any data object against each other.<br><br>Take the shop example:<br><br>A subsystem for user's product rating comments does not need to care about all hotspot data like product availability. It just has to serve existing ratings to some given product (by a global unique identifier) and accept new ratings.<br>So let it be an completely separate service, called by the frontend. Whoops, took away a lot of load from the primary database.<br><br>And so it goes on, case by case.<br><br>Of course, not an universal solution, but at least an solution, an path to go.<br><br><br>--<br>Enrico Weigelt, <br>metux IT service<br>http://www.metux.de/</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#6171118447178366479 title="comment permalink">1:42 AM</a>
+ <span class="item-control blog-admin pid-165779087 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=6171118447178366479" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c3549574482360377755><a name=c3549574482360377755></a>
+ <span style=line-height:16px class="comment-icon blogger-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Blogger style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-4)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<a href=https://www.blogger.com/profile/02101702794664084342 rel=nofollow>Unknown</a> said...
+ </dt>
+ <dd class=comment-body>
+ <p>The interesting point in your article is the way you resolve partitionning with stale time. Partitionning is basically a moment in time that two system cannot communicate. This always happen at some level, for exemple between two clock cycles. It's when the interval get greater than the transaction interval that problems happen and that we can talk about partitionning. If you allow transactions to happen only in longer interval than the partitionning period, partitionning disappeared and the CAP&nbsp;doesn't apply anymore.<br><br>Briefly, if I said that I'm making one transaction a day and that all nodes have disconnection periods of 6 hours or less, is it sufficient to prove that my system is CAP perfect ? I think not.</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#3549574482360377755 title="comment permalink">12:14 AM</a>
+ <span class="item-control blog-admin pid-1432343422 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=3549574482360377755" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c7413236156134514549><a name=c7413236156134514549></a>
+ <span style=line-height:16px class="comment-icon blogger-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Blogger style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-4)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<a href=https://www.blogger.com/profile/11315548391043472529 rel=nofollow>Unknown</a> said...
+ </dt>
+ <dd class=comment-body>
+ <p>Lynch's proof strikes me as irrelevant to actual system design where timeouts and probabilities are fundamentals. Since we are executing on a system with a non-zero probability of undetected ECC error, we cannot do better than that. But since availability is never instantaneous, even on good days, it's reasonable to trade off probabilities of delays with probabilities of failure.</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#7413236156134514549 title="comment permalink">4:37 AM</a>
+ <span class="item-control blog-admin pid-1657154942 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=7413236156134514549" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c652292014700288510><a name=c652292014700288510></a>
+ <span style=line-height:16px class="comment-icon anon-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Anonymous style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-3)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<span class=anon-comment-author>Simon</span> said...
+ </dt>
+ <dd class=comment-body>
+ <p>While this may be a good solution from a practical standpoint it does not address the CAP theorem from a formal perspective. The theorem was presented in this context and can really only be challenged in this context. To point out a few of the problems with this solution - you assume that it's okay if partitions form provided they are temporary and likewise it is assumed to be fine for availability to cease temporarily. However, according to the formal model of Gilbert and Lynch this is not permissible. Any delay, however long, violates the availability constraint.<br><br>From a practical perspective your solution does seem fairly tolerant of real-world failures, but it doesn't address the CAP theorem according to the formal, theoretical model it was formulated in.</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#652292014700288510 title="comment permalink">7:45 AM</a>
+ <span class="item-control blog-admin pid-165779087 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=652292014700288510" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c4001394525508739462><a name=c4001394525508739462></a>
+ <span style=line-height:16px class="comment-icon blogger-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Blogger style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-4)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<a href=https://www.blogger.com/profile/01018759510123080455 rel=nofollow>jason haris</a> said...
+ </dt>
+ <dd class=comment-body>
+ <p>I loved reading this piece! Well written! :)<br><br>jason<br><a href=http://rmpproperty.com/2013/02/pension-crisis-2013/ rel=nofollow>Student pods</a></p>
+ </dd>
+ <dd class=comment-timestamp><a href=#4001394525508739462 title="comment permalink">2:07 PM</a>
+ <span class="item-control blog-admin pid-30334532 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=4001394525508739462" title="Delete Comment"></a></span>
+ </dd>
+ 
+ <dt class=comment-poster id=c7186113370482048795><a name=c7186113370482048795></a>
+ <span style=line-height:16px class="comment-icon blogger-comment-icon"><img src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>' alt=Blogger style="display:inline;background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-4)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>&nbsp;<a href=https://www.blogger.com/profile/11100001020120534888 rel=nofollow>carlos aya</a> said...
+ </dt>
+ <dd class=comment-body>
+ <p>Hi Guy,<br><br>Your approach reminds me a little about STM (Software Transactional Memory) in Haskell and other languages. Have you read about this? Any thoughts?<br><br>cheers,<br>Carlos</p>
+ </dd>
+ <dd class=comment-timestamp><a href=#7186113370482048795 title="comment permalink">5:52 AM</a>
+ <span class="item-control blog-admin pid-1057359210 sf-hidden"><a style=border:none href="https://www.blogger.com/delete-comment.g?blogID=7035234&amp;postID=7186113370482048795" title="Delete Comment"></a></span>
+ </dd>
+ 
+ </dl>
+ <p class=comment-timestamp>
+ <a class=comment-link href="https://www.blogger.com/comment.g?blogID=7035234&amp;postID=4456356795461459679">Post a Comment</a>
+ </p>
+ 
+ <p class=comment-timestamp>
+ <a href=http://guysblogspot.blogspot.com/>&lt;&lt; Home</a>
+ </p>
+ </div>
+ 
+</div></div>
+<div id=sidebar><div id=sidebar2>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <div id=twitter_div>
+<h2 class=sidebar-title>Twitter Updates: Guy...</h2>
+<ul id=twitter_update_list></ul>
+</div>
+ <h2 class=sidebar-title>Previous Posts</h2>
+ <ul id=recently>
+ 
+ <li><a href=http://guysblogspot.blogspot.com/2008/09/why-forte-migrations-should-use.html>Why Forte migrations should use Atomikos</a></li>
+ 
+ <li><a href=http://guysblogspot.blogspot.com/2008/09/achilles-heel-of-cap-theorem.html>The Achilles heel of the CAP theorem</a></li>
+ 
+ <li><a href=http://guysblogspot.blogspot.com/2008/09/my-take-on-cap.html>My take on CAP</a></li>
+ 
+ <li><a href=http://guysblogspot.blogspot.com/2008/08/unlimited-scaling-easy.html>Unlimited scaling, easy!</a></li>
+ 
+ <li><a href=http://guysblogspot.blogspot.com/2008/07/loosely-coupled-deployment-vs-loosely.html>Loosely-coupled deployment vs loosely-coupled design</a></li>
+ 
+ <li><a href=http://guysblogspot.blogspot.com/2007/10/bpel-and-compensation.html>BPEL and compensation</a></li>
+ 
+ <li><a href=http://guysblogspot.blogspot.com/2007/10/rest-and-reliability.html>REST and reliability</a></li>
+ 
+ <li><a href=http://guysblogspot.blogspot.com/2007/10/data-replication-in-soa-price-of-loose.html>Data Replication in SOA: The Price of Loose Coupling</a></li>
+ 
+ <li><a href=http://guysblogspot.blogspot.com/2007/10/atomikos-offers-3rd-generation-tp.html>Atomikos Offers 3rd Generation TP Monitors</a></li>
+ 
+ <li><a href=http://guysblogspot.blogspot.com/2007/05/my-jp06-talk-on-parleys.html>My JP06 talk on Parleys...</a></li>
+ 
+ </ul>
+ 
+ <p id=powered-by><a href=http://www.blogger.com/><img src=data:image/gif;base64,R0lGODlhWAAfAOYAAPjx6P9mAABDev///+jcy8i1n+/m2e3j1ezi1O7k1vTr4fPr4PTs4vXt4vLp3vPq3/Hp3fHo2/Dn2kJxl7bDy/+zgOfl4SFaiRFPgYSgtf/Zv/8AAP+MQFN9nw5NgNfa2XSUrf+WUB1XhjJmkDxsk8bO0jxskv9wEGOJpjtrkUFwlrW/xJWrvLS+wrW/w/ngy//Gn/yaV9LSzrW/xdXW0ztskv/iz0p2mPmWUsTKy/5uDvDUu0t3mZeruLbAxkt2mdXV0sTJybO/xv/s3/HWvlqAnvmVUYaer4efsP9vD1F7naW0vcTKyniVqmmLpdTU0ZWptf+DMJirueTg2ixhjNTW1Et2mC1ijYegsniWq7O+xv/172iKo6e2v5aruKSzu7TAxsPJzP+fYJaptsPIyHmWrGqMpkp1l2mLpLO9wQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABsALAAAAABYAB8AAAf/gBsbBISFhoeIiYqLjI2OiIKDCJOUlZaXmJmam5ydlwSDB6KjpKWmp6ipqqusqAUECbE7RgG1tre4tkY7sb2+v8DBwsPEwa8GBkQ6uczMOkTI0SkpUNFcKWdf0dvc3d7f4NHHBjjN5rg43Gkp2ylHRyLh8vPzrxIS5/m29/wtNfwSarSQIUDGGA8iyCC5IcEDEn8Sbghg2IJKQYAYM2q89ypCBGYhKogUKeaEOY8oXZhAGcFEERErPSxBYyKIBxcCrDQpskREBBEuXIgIwrKo0aMoX0GAgOuEhgFQow7YEqLZ0qsrTFyFYALLCghMBEBYIVaAkx8efnjJIqDtiqxb/+PKnbv1lQMHuJ5K3RuF2d2/M0j8dUBixl8BT3oIJuGhhwgROXKIACx4sOXLmP++evDgVoi9oGEw40z6igcppEn4IG3Gg4AuD8oIAMLDA+faHoD4IEG6t+/fwB+8WrDgVoWoMDgo/wx1CDPi0KNLh05jyvToNGhc385d+isFCoxHrVrrxJCoJnGBX8++vZYw7ePLn0+f/isGDMRHtaFBr1QNHNyC34BKqGCgEkLgJ4QAKgzo4IMQRijhhPi90kAD+oEGWgW3XOhhWyAKUEUDYDDo4Ykopqjiiixe+AoAAGSooVQc2gLjjW0BYEEHAmQAAAUCTHDjkEQWaeSRSML4Yv+Mthy3X3/92UDjLUTmCAAIPf4YJIwWoNAWChbAWMIFAoCQQQdcThAkCxN8AGMGGAQZJgAdZOAlC0QumSF5nkVVYy1V9ggCBheECaSQAKh5AZmIknlBnALA6CWhbVEAAAsCXDDClgC09ailQ+rZJHLKlcoBDH5SOWSIZcJ4qI4CYGCBBXFa8EGsWkYKAJkl0CqApZu6SWaYbX0wZ6gEwNjnjHsFaOOqv1KwKQhaCvlqotFyaqWValraVgYZkOmtrkWKaot/zGqAS6Cu5vjqtd1eu62u3XYa5AT4umlluckyaYtTzA6gQXrP4qhrBu5uaUGss9Z6Kwa5wsirr8AKUALHu0aa69lIHFfg7LrQ4tsWmkBi4KOijEoswAiQSpopmb8CgDAGE7AM47559quPPkRCOvKcm6K5489ikomlrhaoWXPMMsPcgZsYQJxxvzHsbE4MSWaNJM4w1qs1vzC+kITVuSTxwtdfs2AmjxeIiUIGR7uJNrI3vlA12bXEcPbcWfPYFgZ4yhwitXzfuGThiPNdAgUUHAvAB4zLnXgBGxSQ+OWYZ65kJAV07vnnoIcu+uikl2766aFHovrqrLfu+uuwxy777IIEAgA7 alt="Powered by Blogger"></a></p>
+ 
+ 
+ 
+</div></div>
+</div>
+<div id=footer><hr class=sf-hidden>
+ <p>&nbsp;</p>
+</div>
+<noscript>
+<a target="_blank" href="http://www.webstats4u.com/stats?ADj1ggPqJrFg/AP46tKhhs9lBXgQ"><img
+src="http://m1.webstats4u.com/n?id=ADj1ggPqJrFg/AP46tKhhs9lBXgQ"
+border="0" width="18" height="18"
+alt="Webstats4U - Gratis web site statistieken
+Eigen homepage website teller"></a><br>
+<a target="_blank" href="http://www.webstats4u.com/">Gratis teller</a>
+</noscript>
